@@ -5,16 +5,16 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/svg.dart';
+// import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:thepos/core/config.dart';
+// import 'package:thepos/core/config.dart';
 import 'package:thepos/core/init_app.dart';
 import 'package:thepos/features/carts/data/models/cart.dart';
 import 'package:thepos/features/carts/data/models/cart_item.dart';
-import 'package:thepos/features/customer/data/models/customer.dart';
+// import 'package:thepos/features/customer/data/models/customer.dart';
 import 'package:thepos/features/carts/presentation/views/mobile/edit_cart_item_view.dart';
-import 'package:thepos/features/customer/data/serives/data_sources/remote_customer.dart';
+// import 'package:thepos/features/customer/data/serives/data_sources/remote_customer.dart';
 import 'package:thepos/features/customer/presentation/widgets/model/item_dropdown_list.dart';
 import 'package:thepos/features/home/data/models/product.dart';
 import 'package:thepos/features/invoice/data/data_sources/store_invoice.dart';
@@ -23,15 +23,15 @@ import 'package:thepos/features/invoice/helper/cart_invoice_mapper.dart';
 
 class CartsController extends GetxController {
   RxList<Cart> listCarts = <Cart>[
-    Cart(keyCart: "1", cartItems: [],customer: null),
-    Cart(keyCart: "2", cartItems: [],customer: null),
-    Cart(keyCart: "3", cartItems: [],customer: null),
-    Cart(keyCart: "4", cartItems: [],customer: null),
-    Cart(keyCart: "5", cartItems: [],customer: null),
-    Cart(keyCart: "6", cartItems: [],customer: null),
-    Cart(keyCart: "7", cartItems: [],customer: null),
-    Cart(keyCart: "8", cartItems: [],customer: null),
-    Cart(keyCart: "9", cartItems: [],customer: null),
+    Cart(keyCart: "1", cartItems: [], customer: null),
+    Cart(keyCart: "2", cartItems: [], customer: null),
+    Cart(keyCart: "3", cartItems: [], customer: null),
+    Cart(keyCart: "4", cartItems: [], customer: null),
+    Cart(keyCart: "5", cartItems: [], customer: null),
+    Cart(keyCart: "6", cartItems: [], customer: null),
+    Cart(keyCart: "7", cartItems: [], customer: null),
+    Cart(keyCart: "8", cartItems: [], customer: null),
+    Cart(keyCart: "9", cartItems: [], customer: null),
   ].obs;
 
   var selectedCart = 0.obs;
@@ -114,14 +114,13 @@ class CartsController extends GetxController {
     }
   }
 
-  void clearDataOfCart (){
+  void clearDataOfCart() {
     final Cart tmpCart = listCarts[selectedCart.value];
     tmpCart.cartItems.clear();
     tmpCart.customer = null;
 
     listCarts[selectedCart.value] = tmpCart;
     update();
-
   }
 
   Future clearCarts() async {
@@ -208,9 +207,10 @@ class CartsController extends GetxController {
       isScrollControlled: true,
     );
   }
-  void setSelectedCustomer (DropListItem customer){
-    if(customer!=null && customer.getCustomer()!=null){
-      listCarts.value[selectedCart.value].customer=customer.getCustomer();
+
+  void setSelectedCustomer(DropListItem customer) {
+    if (customer != null && customer.getCustomer() != null) {
+      listCarts.value[selectedCart.value].customer = customer.getCustomer();
     }
     update();
   }
