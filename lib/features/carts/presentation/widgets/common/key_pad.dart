@@ -82,8 +82,7 @@ class KeyPad extends StatelessWidget {
     return Expanded(
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          primary: Colors.white,
-          onPrimary: Colors.green,
+          foregroundColor: Colors.green, backgroundColor: Colors.white,
           elevation: 0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(0),
@@ -118,8 +117,7 @@ class KeyPad extends StatelessWidget {
     return Expanded(
       child: ElevatedButton.icon(
         style: ElevatedButton.styleFrom(
-          primary: Colors.white,
-          onPrimary: Colors.green,
+          foregroundColor: Colors.green, backgroundColor: Colors.white,
           elevation: 0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(0),

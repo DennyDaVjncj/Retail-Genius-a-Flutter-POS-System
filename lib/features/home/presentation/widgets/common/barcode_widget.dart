@@ -4,10 +4,10 @@ import 'package:thepos/features/home/presentation/controllers/home_controller.da
 
 
 class Barcode extends StatelessWidget {
+
+  Barcode(this.controller,this.autoFocus, {Key? key}) : super(key: key);
   HomeController controller;
   bool autoFocus;
-
-  Barcode(this.controller,this.autoFocus);
 
   @override
   Widget build(BuildContext context) {

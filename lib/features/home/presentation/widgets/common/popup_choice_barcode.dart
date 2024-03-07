@@ -9,7 +9,7 @@ class PopupChoiceBarcode extends StatelessWidget {
   Widget build(BuildContext context) {
     return Wrap(
       alignment: WrapAlignment.center,
-      children: [
+      children: <Widget>[
         Container(
           color: Colors.grey[350],
           child: Container(
@@ -42,7 +42,6 @@ class PopupChoiceBarcode extends StatelessWidget {
                           Get.back(result: 1);
                         },
                         color: CupertinoColors.activeBlue,
-                        pressedOpacity: 0.4,
                         child: const Text(" Scan QR "), //its has min length
                       ),
                     ),
@@ -55,7 +54,6 @@ class PopupChoiceBarcode extends StatelessWidget {
                           Get.back(result: 2);
                         },
                         color: CupertinoColors.activeBlue,
-                        pressedOpacity: 0.4,
                         child:
                             const Text(" Scan Barcode "), //its has min length
                       ),

@@ -21,11 +21,6 @@ class HomeController extends GetxController {
 
   RxBool loadingHome = false.obs;
   RxBool showHideCarts = false.obs;
-@override
-  void onInit() {
-
-  super.onInit();
-}
   @override
   void onReady() {
     super.onReady();
@@ -175,8 +170,8 @@ class HomeController extends GetxController {
     });
   }
 
-  void _checkCameraPermission({required Function() callback}) async {
-    var status = await Permission.camera.request();
+  Future<void> _checkCameraPermission({required Function() callback}) async {
+    final status = await Permission.camera.request();
     if (status.isGranted) {
       callback();
     } else {

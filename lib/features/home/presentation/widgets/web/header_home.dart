@@ -7,7 +7,7 @@ import 'package:thepos/features/home/presentation/widgets/web/search_widget.dart
 import '../common/barcode_widget.dart';
 
 class HeaderHomeWidget extends StatelessWidget {
-  HeaderHomeWidget({
+  const HeaderHomeWidget({
     Key? key,
     required this.controller,
   }) : super(key: key);
@@ -38,7 +38,7 @@ class HeaderHomeWidget extends StatelessWidget {
           ),
         ),
         actions: controller.searching.value
-            ? [
+            ? <Widget>[
                 GestureDetector(
                   onTap: () {
                     controller.showSearch();
@@ -50,7 +50,7 @@ class HeaderHomeWidget extends StatelessWidget {
                   ),
                 ),
               ]
-            : [
+            : <Widget>[
                 InkWell(
                   child: SvgPicture.asset(
                     "assets/svg/barcode.svg",
@@ -65,7 +65,7 @@ class HeaderHomeWidget extends StatelessWidget {
                 //   Icons.qr_code,
                 //   color: Colors.grey,
                 // ),
-                SizedBox(
+                const SizedBox(
                   width: 20,
                 ),
                 InkWell(
@@ -76,7 +76,7 @@ class HeaderHomeWidget extends StatelessWidget {
                       "assets/svg/search.svg",
                       width: 20,
                     )),
-                SizedBox(
+                const SizedBox(
                   width: 5,
                 ),
               ],
@@ -86,22 +86,22 @@ class HeaderHomeWidget extends StatelessWidget {
 }
 
 class SearchBar extends StatelessWidget {
+
+  const SearchBar(
+      {Key? key, required this.isSearching,
+      required this.controller,
+      required this.isBarcode,
+      required this.isAutoFous}) : super(key: key);
   final bool isSearching;
   final bool isBarcode;
   final bool isAutoFous;
   final HomeController controller;
 
-  SearchBar(
-      {required this.isSearching,
-      required this.controller,
-      required this.isBarcode,
-      required this.isAutoFous});
-
   @override
   Widget build(BuildContext context) {
     return Stack(
       alignment: Alignment.center,
-      children: [
+      children: <Widget>[
         AnimateExpansion(
           animate: !isBarcode,
           // animate: !isSearching||!isBarcode,

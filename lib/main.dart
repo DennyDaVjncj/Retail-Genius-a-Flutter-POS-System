@@ -25,18 +25,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      enableLog: true,
       getPages: routes,
       initialRoute: initial,
       locale: LocalizationService.locale,
       navigatorKey: navigatorKey,
       translations: LocalizationService(),
-      builder: (context, widget) => ResponsiveWrapper.builder(
+      builder: (BuildContext context, Widget? widget) => ResponsiveWrapper.builder(
         widget,
         maxWidth: 1200,
         minWidth: 480,
         defaultScale: true,
-        breakpoints: [
+        breakpoints: <ResponsiveBreakpoint>[
           const ResponsiveBreakpoint.resize(480, name: MOBILE),
           const ResponsiveBreakpoint.autoScale(800, name: TABLET),
           const ResponsiveBreakpoint.resize(1000, name: DESKTOP),

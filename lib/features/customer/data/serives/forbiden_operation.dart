@@ -1,6 +1,4 @@
 class ForbiddenOperation {
-  String code;
-  String message;
 
   ForbiddenOperation({
     required this.code,
@@ -11,4 +9,6 @@ class ForbiddenOperation {
     code: json['code'],
     message: json["message"],
   );
+  String code;
+  String message;
 }

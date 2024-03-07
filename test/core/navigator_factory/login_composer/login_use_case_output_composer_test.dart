@@ -40,7 +40,7 @@ void main() {
       output2,
     ]);
 
-    final LoginErrors loginError = anyLoginError;
+    const LoginErrors loginError = anyLoginError;
     sut.onLoginFail(loginError);
 
     expect(output1.loginFailedCalls.length, 1);

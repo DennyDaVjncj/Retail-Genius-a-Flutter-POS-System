@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:thepos/features/customer/data/models/customer.dart';
+import 'package:thepos/features/carts/data/models/cart.dart';
+import 'package:thepos/features/carts/data/models/cart_item.dart';
 import 'package:thepos/features/carts/presentation/controllers/carts_controller.dart';
 import 'package:thepos/features/carts/presentation/widgets/web/cart_item_product_widget.dart';
 import 'package:thepos/features/carts/presentation/widgets/web/cart_item_widget.dart';
@@ -19,7 +20,7 @@ class CartView extends StatefulWidget {
 }
 
 class _CartViewState extends State<CartView> {
-  var cartsController = Get.find<CartsController>();
+  CartsController cartsController = Get.find<CartsController>();
   final CustomerController customerController = Get.put(CustomerController());
   @override
   Widget build(BuildContext context) {
@@ -33,12 +34,12 @@ class _CartViewState extends State<CartView> {
             color: Colors.white,
             // height: 100,
             child: Column(
-              children: [
+              children: <Widget>[
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
-                    children: cartsController.listCarts.map((cart) {
-                      final index = cartsController.listCarts.indexOf(cart);
+                    children: cartsController.listCarts.map((Cart cart) {
+                      final int index = cartsController.listCarts.indexOf(cart);
 
                       return GestureDetector(
                           onTap: () {
@@ -61,8 +62,6 @@ class _CartViewState extends State<CartView> {
                   decoration: BoxDecoration(
                       border: Border.all(
                         color: const Color(0xffF79624),
-                        style: BorderStyle.solid,
-                        width: 1.0,
                       ),
                       // color: const Color(0xff178F49) ,
                       borderRadius: BorderRadius.circular(5.0)),
@@ -97,7 +96,7 @@ class _CartViewState extends State<CartView> {
                           disabledBorder: InputBorder.none,
                           enabledBorder: InputBorder.none,
                           contentPadding: EdgeInsets.zero),
-                      compareFn: (item, selectedItem) {
+                      compareFn: (DropListItem? item, DropListItem? selectedItem) {
                         return item != null &&
                             selectedItem != null &&
                             (item == selectedItem);
@@ -108,15 +107,14 @@ class _CartViewState extends State<CartView> {
                   ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
+                  children: <Widget>[
                     SvgPicture.asset(
                       "assets/svg/edit.svg",
                       width: 25,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
+                      children: <Widget>[
                         Text(
                           'السلة ',
                           style: GoogleFonts.cairo(
@@ -169,15 +167,14 @@ class _CartViewState extends State<CartView> {
                 ),
                 Expanded(
                   child: ListView.separated(
-                    scrollDirection: Axis.vertical,
                     shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     itemCount: cartsController
                         .listCarts[cartsController.selectedCart.value]
                         .cartItems
                         .length,
-                    itemBuilder: (context, index) {
-                      var item = cartsController
+                    itemBuilder: (BuildContext context, int index) {
+                      final CartItem item = cartsController
                           .listCarts[cartsController.selectedCart.value]
                           .cartItems[index];
                       return CartItemProductWidget(
@@ -187,8 +184,8 @@ class _CartViewState extends State<CartView> {
                         },
                       );
                     },
-                    separatorBuilder: (context, index) {
-                      return Divider();
+                    separatorBuilder: (BuildContext context, int index) {
+                      return const Divider();
                     },
                   ),
                 ),
@@ -199,8 +196,7 @@ class _CartViewState extends State<CartView> {
                       cartsController.pay();
                     },
                     style: ElevatedButton.styleFrom(
-                      primary: const Color(0xff178f49), // background
-                      onPrimary: const Color(0xffF79624),
+                      foregroundColor: const Color(0xffF79624), backgroundColor: const Color(0xff178f49),
                       // foreground
                     ),
                     child: cartsController.isPayLoading.value
@@ -274,13 +270,13 @@ class _CartViewState extends State<CartView> {
 
   Widget _customPopupItemBuilder(BuildContext context, DropListItem? item, bool isSelected) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 8),
+      margin: const EdgeInsets.symmetric(horizontal: 8),
       child: item!.isFooter()
           ? Text(
         '...إضافة جديد',
         style: GoogleFonts.cairo(
           textStyle: const TextStyle(
-              color: const Color(0xff178F49),
+              color: Color(0xff178F49),
               fontSize: 15,
               fontWeight: FontWeight.bold),
         ),

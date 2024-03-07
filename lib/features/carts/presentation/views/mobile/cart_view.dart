@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:thepos/features/customer/data/models/customer.dart';
 import 'package:thepos/features/carts/presentation/controllers/carts_controller.dart';
 import 'package:thepos/features/carts/presentation/views/mobile/cart_list_view.dart';
 import 'package:thepos/features/customer/presentation/controllers/customer_controller.dart';
@@ -46,8 +45,6 @@ class CartView extends StatelessWidget {
             decoration: BoxDecoration(
                 border: Border.all(
                   color: const Color(0xffF79624),
-                  style: BorderStyle.solid,
-                  width: 1.0,
                 ),
                 // color: const Color(0xff178F49) ,
                 borderRadius: BorderRadius.circular(5.0)),
@@ -82,7 +79,7 @@ class CartView extends StatelessWidget {
                   disabledBorder: InputBorder.none,
                   enabledBorder: InputBorder.none,
                   contentPadding: EdgeInsets.zero),
-              compareFn: (item, selectedItem) {
+              compareFn: (DropListItem? item, DropListItem? selectedItem) {
                 return item != null &&
                     selectedItem != null &&
                     (item == selectedItem);
@@ -153,7 +150,7 @@ class CartView extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        primary: Colors.transparent,
+        backgroundColor: Colors.transparent,
         shadowColor: Colors.transparent,
       ),
       child: SvgPicture.asset(assets),
@@ -182,13 +179,13 @@ class CartView extends StatelessWidget {
 
   Widget _customPopupItemBuilder(BuildContext context, DropListItem? item, bool isSelected) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 8),
+      margin: const EdgeInsets.symmetric(horizontal: 8),
       child: item!.isFooter()
           ? Text(
               '...إضافة جديد',
               style: GoogleFonts.cairo(
                 textStyle: const TextStyle(
-                    color: const Color(0xff178F49),
+                    color: Color(0xff178F49),
                     fontSize: 15,
                     fontWeight: FontWeight.bold),
               ),

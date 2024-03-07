@@ -19,7 +19,7 @@ class ProductWidget extends StatelessWidget {
       margin: const EdgeInsets.all(4),
       padding: const EdgeInsets.all(8),
       child: Column(
-        children: [
+        children: <Widget>[
           Expanded(
             child: Image.network(
               faker.image.loremPicsum.image(),
@@ -50,12 +50,12 @@ class ProductWidget extends StatelessWidget {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
+            children: <Widget>[
               Column(
-                children: [
+                children: <Widget>[
                   if (product.salePrice != null && product.salePrice! > 0)
                     Row(
-                      children: [
+                      children: <Widget>[
                         Text(
                           "ريال",
                           maxLines: 1,
@@ -84,7 +84,7 @@ class ProductWidget extends StatelessWidget {
                       ],
                     ),
                   Row(
-                    children: [
+                    children: <Widget>[
                       Text(
                         "ريال",
                         maxLines: 1,

@@ -14,6 +14,13 @@ class Customer extends Equatable implements DropListItem {
     this.ID,
   });
 
+  factory Customer.fromJson(Map<String, dynamic> json) => Customer(
+        name: json['name'],
+        mobile_no: json["mobile_no"],
+        email: json["email"],
+        ID: json["ID"],
+      );
+
 
   @HiveField(0)
   String? name;
@@ -24,14 +31,7 @@ class Customer extends Equatable implements DropListItem {
   @HiveField(3)
   String? ID;
 
-  factory Customer.fromJson(Map<String, dynamic> json) => Customer(
-        name: json['name'],
-        mobile_no: json["mobile_no"],
-        email: json["email"],
-        ID: json["ID"],
-      );
-
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => <String, >{
         "name": name,
         "mobile_no": mobile_no,
         "email": email,
@@ -39,7 +39,7 @@ class Customer extends Equatable implements DropListItem {
       };
 
   @override
-  List<Object?> get props => [name, mobile_no, email, ID];
+  List<Object?> get props => <Object?>[name, mobile_no, email, ID];
 
 
   @override

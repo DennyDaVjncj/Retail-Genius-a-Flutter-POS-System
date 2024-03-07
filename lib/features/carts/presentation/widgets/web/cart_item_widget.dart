@@ -15,12 +15,12 @@ class CartItemWidget extends StatelessWidget {
       width: 60,
       height: 60,
       alignment: Alignment.center,
-      margin: EdgeInsets.symmetric(horizontal: 5, vertical: 1),
+      margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 1),
       // padding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
       decoration: BoxDecoration(
           color: isSelected
               ? const Color(0xffF79624)
-              : Color(0xffF79624).withOpacity(0.4),
+              : const Color(0xffF79624).withOpacity(0.4),
           borderRadius: BorderRadius.circular(8.0)),
       child: Text(
         title,

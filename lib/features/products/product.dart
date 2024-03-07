@@ -1,9 +1,4 @@
 class Product {
-  String sku;
-  String name;
-  int price;
-  int taxRate;
-  double taxedPrice;
 
   Product(
       {required this.sku,
@@ -18,4 +13,9 @@ class Product {
       price: json['price'],
       taxRate: json['tax_rate'],
       taxedPrice: json['taxed_price']);
+  String sku;
+  String name;
+  int price;
+  int taxRate;
+  double taxedPrice;
 }

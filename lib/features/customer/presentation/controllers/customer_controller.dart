@@ -4,15 +4,15 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:thepos/core/init_app.dart';
 import 'package:thepos/features/customer/data/models/customer.dart';
 import 'package:thepos/features/customer/data/serives/data_sources/remote_customer.dart';
+import 'package:thepos/features/customer/presentation/widgets/common/add_customer_widget.dart';
 import 'package:thepos/features/customer/presentation/widgets/model/footer.dart';
 import 'package:thepos/features/customer/presentation/widgets/model/item_dropdown_list.dart';
-import 'package:thepos/features/customer/presentation/widgets/common/add_customer_widget.dart';
 
 class CustomerController extends GetxController {
   RxList<Customer> listCustomer = <Customer>[].obs;
-  var isCustomerLoading = false.obs;
-  var errorValidateMessage = "".obs;
-  var searching = false.obs;
+  RxBool isCustomerLoading = false.obs;
+  RxString errorValidateMessage = "".obs;
+  RxBool searching = false.obs;
 
   Customer customer = Customer(mobile_no: "choose customer");
 
@@ -24,8 +24,8 @@ class CustomerController extends GetxController {
 
   void showDialogAddCustomer() {
     Get.defaultDialog(
-      titlePadding: EdgeInsets.symmetric(horizontal: 110, vertical: 10),
-      contentPadding: EdgeInsets.symmetric(horizontal: 10),
+      titlePadding: const EdgeInsets.symmetric(horizontal: 110, vertical: 10),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 10),
       title: 'اضافة عميل جديد',
       titleStyle: GoogleFonts.cairo(
         textStyle: const TextStyle(
@@ -53,7 +53,7 @@ class CustomerController extends GetxController {
   Future<void> addCustomer(
       String mobile, String name, String ID, String email) async {
     isCustomerLoading.value = true;
-    var customer =
+    final Customer customer =
         Customer(mobile_no: mobile, name: name, ID: ID, email: email);
 
     if (customer != null) {
@@ -85,9 +85,9 @@ class CustomerController extends GetxController {
   }
 
   Future<List<DropListItem>> onSearch(String value) async {
-    List<DropListItem> listCustomerSearch = [];
+    final List<DropListItem> listCustomerSearch = <DropListItem>[];
     listCustomerSearch.addAll(listCustomer.value
-        .where((customer) =>
+        .where((Customer customer) =>
         customer.toString().toLowerCase().contains(value.toLowerCase()))
         .toList());
 

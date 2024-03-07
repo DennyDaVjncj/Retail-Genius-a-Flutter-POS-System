@@ -44,7 +44,7 @@ class HomeRepository {
   }
 
   Future<List<Category>> getProductsCategories() async {
-    var connectivityResult = await (Connectivity().checkConnectivity());
+    final ConnectivityResult connectivityResult = await Connectivity().checkConnectivity();
 
     if (connectivityResult == ConnectivityResult.none) {
       return localDataSource.getProductsCategories();

@@ -24,12 +24,12 @@ void main() {
     final NavigatorFactorySpy navigatorFactory = NavigatorFactorySpy();
     final LoginRouter sut = LoginRouter(navigatorFactory);
 
-    final LoginErrors loginError = anyLoginError;
+    const LoginErrors loginError = anyLoginError;
     sut.onLoginFail(loginError);
 
     final Route expectedRoute = Route(
         type: NavigationType.showSnackBar,
-        details: 'error${loginError.toString()}');
+        details: 'error$loginError');
 
     expectRoutes(navigatorFactory.capturedRoutes, <Route>[expectedRoute]);
   });

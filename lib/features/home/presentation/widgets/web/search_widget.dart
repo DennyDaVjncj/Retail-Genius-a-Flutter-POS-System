@@ -3,8 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:thepos/features/home/presentation/controllers/home_controller.dart';
 
 class Search extends StatelessWidget {
+  Search(this.controller, {Key? key}) : super(key: key);
   HomeController controller;
-  Search(this.controller);
 
   @override
   Widget build(BuildContext context) {
@@ -34,15 +34,15 @@ class Search extends StatelessWidget {
 }
 
 class AnimateExpansion extends StatefulWidget {
-  final Widget child;
-  final bool animate;
-  final double axisAlignment;
 
-  AnimateExpansion({
+  const AnimateExpansion({Key? key, 
     this.animate = false,
     required this.axisAlignment,
     required this.child,
-  });
+  }) : super(key: key);
+  final Widget child;
+  final bool animate;
+  final double axisAlignment;
 
   @override
   _AnimateExpansionState createState() => _AnimateExpansionState();
@@ -56,7 +56,7 @@ class _AnimateExpansionState extends State<AnimateExpansion>
   void prepareAnimations() {
     _animationController = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 350),
+      duration: const Duration(milliseconds: 350),
     );
     _animation = CurvedAnimation(
       parent: _animationController,
@@ -89,7 +89,6 @@ class _AnimateExpansionState extends State<AnimateExpansion>
   @override
   Widget build(BuildContext context) {
     return SizeTransition(
-        axis: Axis.vertical,
         axisAlignment: -1.0,
         sizeFactor: _animation,
         child: widget.child);

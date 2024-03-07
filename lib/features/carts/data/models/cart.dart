@@ -12,6 +12,16 @@ class Cart {
     required this.cartItems,
     this.customer
   });
+
+  factory Cart.fromJson(Map<String, dynamic> json) => Cart(
+        id: json['id'],
+        keyCart: json["keyCart"],
+        cartItems: json["cartItems"] == null
+            ? <CartItem>[]
+            : List<CartItem>.from(
+                json["cartItems"].map((x) => CartItem.fromJson(x))),
+        customer: Customer.fromJson(json['customer']),
+      );
   @HiveField(0)
   String ?id;
   @HiveField(1)
@@ -21,22 +31,12 @@ class Cart {
   @HiveField(3)
   Customer? customer ;
 
-  factory Cart.fromJson(Map<String, dynamic> json) => Cart(
-        id: json['id'],
-        keyCart: json["keyCart"],
-        cartItems: json["cartItems"] == null
-            ? []
-            : List<CartItem>.from(
-                json["cartItems"].map((x) => CartItem.fromJson(x))),
-        customer: Customer.fromJson(json['customer']),
-      );
-
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => <String, >{
         "id": id,
         "keyCart": keyCart,
         "cartItems": cartItems == null
-            ? []
-            : List<dynamic>.from(cartItems.map((x) => x.toJson())),
+            ? <>[]
+            : List<dynamic>.from(cartItems.map((CartItem x) => x.toJson())),
         if (customer!=null)
           "customer":customer!.toJson(),
       };

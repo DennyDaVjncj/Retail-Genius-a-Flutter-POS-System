@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:thepos/features/carts/presentation/controllers/carts_controller.dart';
 import 'package:thepos/features/carts/presentation/views/web/cart_view.dart';
+import 'package:thepos/features/home/data/models/category.dart';
 import 'package:thepos/features/home/data/models/product.dart';
 import 'package:thepos/features/home/presentation/controllers/home_controller.dart';
 import 'package:thepos/features/home/presentation/widgets/web/category_widget.dart';
@@ -12,16 +13,16 @@ import 'package:thepos/features/home/presentation/widgets/web/product_widget.dar
 class HomeView extends GetView<HomeController> {
   HomeView({Key? key}) : super(key: key);
 
-  final cartsController = Get.put(CartsController());
+  final CartsController cartsController = Get.put(CartsController());
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(HomeController());
+    final HomeController controller = Get.put(HomeController());
     return Scaffold(
         backgroundColor: const Color(0xffF4F5FA),
         body: GetBuilder<HomeController>(
           builder: (HomeController cont) => Row(
-            children: [
+            children: <Widget>[
               if (!GetPlatform.isMobile)
                 Container(
                   width: 300,
@@ -33,20 +34,20 @@ class HomeView extends GetView<HomeController> {
                   color: Colors.grey.shade100,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
+                    children: <Widget>[
                       HeaderHomeWidget(controller: cont),
                       if (cont.showHideCarts.value && GetPlatform.isMobile)
                         const Expanded(child: CartView()),
                       if (!(cont.showHideCarts.value && GetPlatform.isMobile))
                         Column(
-                          children: [
+                          children: <Widget>[
                             const SizedBox(
                               height: 10,
                             ),
                             SingleChildScrollView(
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.end,
-                                children: cont.listCategory.value.map((category) {
+                                children: cont.listCategory.value.map((Category category) {
                                   return GestureDetector(
                                       onTap: () {
                                         cont.changeCategory(category);

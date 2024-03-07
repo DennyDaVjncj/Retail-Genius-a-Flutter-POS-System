@@ -32,7 +32,7 @@ class AddCustomerWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
-        children: [
+        children: <Widget>[
           TextField(
             textAlign: TextAlign.right,
             controller: textIDEditingController,
@@ -42,13 +42,13 @@ class AddCustomerWidget extends StatelessWidget {
                 labelText: 'رقم المعرف',
                 labelStyle: GoogleFonts.cairo(
                   textStyle: const TextStyle(
-                    color: const Color(0xff178F49),
+                    color: Color(0xff178F49),
                     fontSize: 15,
                     fontWeight: FontWeight.w600,
                   ),
                 )),
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
           TextField(
@@ -60,13 +60,13 @@ class AddCustomerWidget extends StatelessWidget {
                 labelText: 'اسم العميل',
                 labelStyle: GoogleFonts.cairo(
                   textStyle: const TextStyle(
-                    color: const Color(0xff178F49),
+                    color: Color(0xff178F49),
                     fontSize: 15,
                     fontWeight: FontWeight.w600,
                   ),
                 )),
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
           Obx(() => TextField(
@@ -77,7 +77,7 @@ class AddCustomerWidget extends StatelessWidget {
                   labelText: '*رقم الجوال',
                   labelStyle: GoogleFonts.cairo(
                     textStyle: const TextStyle(
-                      color: const Color(0xff178F49),
+                      color: Color(0xff178F49),
                       fontSize: 15,
                       fontWeight: FontWeight.w600,
                     ),
@@ -97,13 +97,13 @@ class AddCustomerWidget extends StatelessWidget {
                       ? null
                       : errorValidateMessage.value,
                 ),
-                onChanged: (value) {
+                onChanged: (String value) {
                   //todo
                   errorValidateMessage.value = validateInput(value,
                       "أدخل رقم الجوال");
                 },
               )),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
           TextField(
@@ -115,18 +115,18 @@ class AddCustomerWidget extends StatelessWidget {
                 labelText: 'الايميل',
                 labelStyle: GoogleFonts.cairo(
                   textStyle: const TextStyle(
-                    color: const Color(0xff178F49),
+                    color: Color(0xff178F49),
                     fontSize: 15,
                     fontWeight: FontWeight.w600,
                   ),
                 )),
           ),
-          SizedBox(
+          const SizedBox(
             height: 8,
           ),
           Obx(() => Container(
               height: 50,
-              color: Color(0xff178F49),
+              color: const Color(0xff178F49),
               width: double.infinity,
               child: isCustomerLoading.value
                   ? const Center(
@@ -154,7 +154,7 @@ class AddCustomerWidget extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        primary: errorValidateMessage.value.isEmpty
+        backgroundColor: errorValidateMessage.value.isEmpty
             ? const Color(0xff178f49)
             : const Color(0xff178f49),
         shadowColor: Colors.transparent,

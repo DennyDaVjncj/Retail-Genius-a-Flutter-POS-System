@@ -17,7 +17,7 @@ class EditCartWidget extends StatefulWidget {
 class _EditCartWidgetState extends State<EditCartWidget> {
   TextEditingController pinController = TextEditingController();
 // final cartsController = Get.put(CartsController());
-  var cartsController = Get.find<CartsController>();
+  CartsController cartsController = Get.find<CartsController>();
 
   @override
   void initState() {
@@ -43,17 +43,17 @@ class _EditCartWidgetState extends State<EditCartWidget> {
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
+        children: <Widget>[
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
             child: Row(
-              children: [
+              children: <Widget>[
                 Expanded(
                     child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
+                  children: <Widget>[
                     Text(
-                      "${widget.item.product.name}",
+                      widget.item.product.name,
                       textAlign: TextAlign.center,
                       style: GoogleFonts.cairo(
                         textStyle: const TextStyle(
@@ -64,7 +64,7 @@ class _EditCartWidgetState extends State<EditCartWidget> {
                     ),
                     RichText(
                         text: TextSpan(
-                      children: [
+                      children: <InlineSpan>[
                         TextSpan(
                           text: "الباركود : ",
                           style: GoogleFonts.cairo(
@@ -88,7 +88,7 @@ class _EditCartWidgetState extends State<EditCartWidget> {
                     )),
                     RichText(
                         text: TextSpan(
-                      children: [
+                      children: <InlineSpan>[
                         TextSpan(
                           text: "السعر : ",
                           style: GoogleFonts.cairo(
@@ -121,7 +121,7 @@ class _EditCartWidgetState extends State<EditCartWidget> {
                     borderRadius: BorderRadius.circular(5.0),
                     color: const Color(0xffffffff),
                     border:
-                        Border.all(width: 1.0, color: const Color(0xffdadada)),
+                        Border.all(color: const Color(0xffdadada)),
                   ),
                   child: Image.network(
                     faker.image.loremPicsum.image(),
@@ -132,10 +132,10 @@ class _EditCartWidgetState extends State<EditCartWidget> {
             ),
           ),
 
-          Container(
+          SizedBox(
             width: double.infinity,
             child: Row(
-              children: [
+              children: <Widget>[
                 Expanded(
                   child: InkWell(
                     onTap: () {
@@ -147,9 +147,9 @@ class _EditCartWidgetState extends State<EditCartWidget> {
                       refreshView();
                     },
                     child: Container(
-                      color: isPriceSelected ? Colors.white : Color(0xffF4F5FA),
+                      color: isPriceSelected ? Colors.white : const Color(0xffF4F5FA),
                       child: Column(
-                        children: [
+                        children: <Widget>[
                           Container(
                             width: double.infinity,
                             height: 8,
@@ -161,7 +161,7 @@ class _EditCartWidgetState extends State<EditCartWidget> {
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 10),
                             child: Row(
-                              children: [
+                              children: <Widget>[
                                 const SizedBox(
                                   width: 10,
                                 ),
@@ -208,9 +208,9 @@ class _EditCartWidgetState extends State<EditCartWidget> {
                     },
                     child: Container(
                       color:
-                          !isPriceSelected ? Colors.white : Color(0xffF4F5FA),
+                          !isPriceSelected ? Colors.white : const Color(0xffF4F5FA),
                       child: Column(
-                        children: [
+                        children: <Widget>[
                           Container(
                             width: double.infinity,
                             height: 8,
@@ -222,7 +222,7 @@ class _EditCartWidgetState extends State<EditCartWidget> {
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 10),
                             child: Row(
-                              children: [
+                              children: <Widget>[
                                 const SizedBox(
                                   width: 10,
                                 ),
@@ -269,10 +269,10 @@ class _EditCartWidgetState extends State<EditCartWidget> {
             width: double.infinity,
             decoration: BoxDecoration(
               color: const Color(0xfff4f5fa),
-              border: Border.all(width: 1.0, color: const Color(0xffdadada)),
+              border: Border.all(color: const Color(0xffdadada)),
             ),
             child: Text(
-              "${pinController.text}",
+              pinController.text,
               textAlign: TextAlign.center,
               style: GoogleFonts.cairo(
                 textStyle: const TextStyle(
@@ -289,10 +289,10 @@ class _EditCartWidgetState extends State<EditCartWidget> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: KeyPad(
-              onChange: (t) {
+              onChange: (String t) {
                 setState(() {});
               },
-              onSubmit: (t) {
+              onSubmit: (String t) {
                 setState(() {});
               },
               textEditingController: pinController,
@@ -304,7 +304,7 @@ class _EditCartWidgetState extends State<EditCartWidget> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Row(
-              children: [
+              children: <Widget>[
                 Expanded(
                   child: InkWell(
                       onTap: () {

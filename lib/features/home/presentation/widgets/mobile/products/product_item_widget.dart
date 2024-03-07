@@ -75,7 +75,7 @@ class ProductItemWidget extends StatelessWidget {
                 ),
                 const Spacer(),
                 Column(
-                  children: [
+                  children: <Widget>[
                     if (productSalePrice != null && productSalePrice! > 0)
                       Row(
                         // crossAxisAlignment: CrossAxisAlignment.center,

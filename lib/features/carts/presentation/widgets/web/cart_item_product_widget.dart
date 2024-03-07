@@ -8,18 +8,28 @@ import 'package:thepos/features/carts/presentation/controllers/carts_controller.
 import 'package:thepos/features/carts/presentation/views/web/edit_cart.dart';
 
 class CartItemProductWidget extends StatelessWidget {
-  final CartItem item;
-  final Function refresh;
-  var cartsController = Get.find<CartsController>();
 
   CartItemProductWidget({Key? key, required this.item, required this.refresh})
       : super(key: key);
+  final CartItem item;
+  final Function refresh;
+  CartsController cartsController = Get.find<CartsController>();
 
   @override
   Widget build(BuildContext context) {
     return Slidable(
-      actionPane: SlidableDrawerActionPane(),
-      actionExtentRatio: 0.25,
+      actionPane: const SlidableDrawerActionPane(),
+      secondaryActions: <Widget>[
+        IconSlideAction(
+          caption: 'حذف',
+          color: Colors.red,
+          icon: Icons.delete,
+          onTap: () {
+            cartsController.deleteItem(item);
+            refresh();
+          },
+        ),
+      ],
       child: ListTile(
           onTap: () async {
             await showModalSideSheet(
@@ -56,7 +66,7 @@ class CartItemProductWidget extends StatelessWidget {
           leading: Text(
             "X ${item.quantity}",
             style: GoogleFonts.cairo(
-              textStyle: TextStyle(
+              textStyle: const TextStyle(
                   color: Color(0xff000000),
                   fontSize: 20,
                   fontWeight: FontWeight.w600),
@@ -64,11 +74,11 @@ class CartItemProductWidget extends StatelessWidget {
           ),
           trailing: RichText(
               text: TextSpan(
-            children: [
+            children: <InlineSpan>[
               TextSpan(
                 text: "${item.quantity * item.getPrice!}",
                 style: GoogleFonts.cairo(
-                  textStyle: TextStyle(
+                  textStyle: const TextStyle(
                       color: Color(0xff178F49),
                       fontSize: 27,
                       fontWeight: FontWeight.w600),
@@ -77,7 +87,7 @@ class CartItemProductWidget extends StatelessWidget {
               TextSpan(
                 text: "ريال",
                 style: GoogleFonts.cairo(
-                  textStyle: TextStyle(
+                  textStyle: const TextStyle(
                       color: Color(0xff000000),
                       fontSize: 11,
                       fontWeight: FontWeight.w600),
@@ -86,25 +96,14 @@ class CartItemProductWidget extends StatelessWidget {
             ],
           )),
           title: Text(
-            "${item.product.name}",
+            item.product.name,
             style: GoogleFonts.cairo(
-              textStyle: TextStyle(
+              textStyle: const TextStyle(
                   color: Color(0xff000000),
                   fontSize: 20,
                   fontWeight: FontWeight.w600),
             ),
           )),
-      secondaryActions: <Widget>[
-        IconSlideAction(
-          caption: 'حذف',
-          color: Colors.red,
-          icon: Icons.delete,
-          onTap: () {
-            cartsController.deleteItem(item);
-            refresh();
-          },
-        ),
-      ],
     );
   }
 }

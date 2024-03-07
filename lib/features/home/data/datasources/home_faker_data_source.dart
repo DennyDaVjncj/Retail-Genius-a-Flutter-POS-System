@@ -1,11 +1,10 @@
-import 'dart:convert';
 
 import 'package:thepos/core/init_app.dart';
 import 'package:thepos/features/home/data/models/product.dart';
 
 class HomeFakerDataSource {
   Future<List<Product>> getProducts() async {
-    List<Product> list = [];
+    final List<Product> list = <Product>[];
 
     for (int i = 0; i < 100; i++) {
       list.add(Product(
@@ -17,7 +16,7 @@ class HomeFakerDataSource {
   }
 
   Future<List<Product>> getProductsByGroupId(int groupId) async {
-    List<Product> list = [];
+    final List<Product> list = <Product>[];
 
     for (int i = 0; i < 100; i++) {
       list.add(Product(

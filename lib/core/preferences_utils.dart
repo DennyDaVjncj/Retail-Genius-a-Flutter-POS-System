@@ -15,7 +15,7 @@ class PreferenceUtils {
     return prefs!;
   }
 
-  static String _getString(String key, [String? defValue]) {
+  static String _getString(String key) {
     return prefs!.getString(key) ?? '';
   }
 
@@ -25,17 +25,17 @@ class PreferenceUtils {
   }
 
   static Future<bool> _setInt(String key, int value) async {
-    var prefs = await _instance;
+    final SharedPreferences prefs = await _instance;
     return prefs.setInt(key, value);
   }
 
   static Future<bool> _setString(String key, String value) async {
-    final prefs = await _instance;
+    final SharedPreferences prefs = await _instance;
     return prefs.setString(key, value);
   }
 
   static Future<bool> _setBool(String key, bool value) async {
-    var prefs = await _instance;
+    final SharedPreferences prefs = await _instance;
     return prefs.setBool(key, value);
   }
 

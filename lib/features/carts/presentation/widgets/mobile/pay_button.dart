@@ -18,8 +18,7 @@ class PayButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        primary: const Color(0xff178f49), // background
-        onPrimary: const Color(0xffF79624),
+        foregroundColor: const Color(0xffF79624), backgroundColor: const Color(0xff178f49),
         fixedSize: Size(MediaQuery.of(context).size.width, 55),
         // foreground
       ),

@@ -11,6 +11,14 @@ class CartItem {
     required this.quantity,
      this.sellingPrice,
   });
+
+
+  factory CartItem.fromJson(Map<String, dynamic> json) => CartItem(
+        id: json['id'],
+        quantity: json["quantity"],
+        sellingPrice:json["selling_price"],
+        product: Product.fromJson(json["product"]),
+      );
   @HiveField(0)
   String ?id;
   @HiveField(1)
@@ -20,22 +28,14 @@ class CartItem {
   @HiveField(3)
   double? sellingPrice;
 
-
-  factory CartItem.fromJson(Map<String, dynamic> json) => CartItem(
-        id: json['id'],
-        quantity: json["quantity"],
-        sellingPrice:json["selling_price"],
-        product: Product.fromJson(json["product"]),
-      );
-
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => <String, >{
         "id": id,
         "quantity": quantity,
         "selling_price":sellingPrice,
         "product": product.toJson(),
       };
 
-  double? get getPrice =>sellingPrice==null ?product.price:sellingPrice;
+  double? get getPrice =>sellingPrice ?? product.price;
 
   // todo calculate taxed selling price
   double get taxedSellingPrice=>getPrice!;

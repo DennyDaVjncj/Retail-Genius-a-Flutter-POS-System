@@ -23,15 +23,15 @@ import 'package:thepos/features/invoice/helper/cart_invoice_mapper.dart';
 
 class CartsController extends GetxController {
   RxList<Cart> listCarts = <Cart>[
-    Cart(keyCart: "1", cartItems: [], customer: null),
-    Cart(keyCart: "2", cartItems: [], customer: null),
-    Cart(keyCart: "3", cartItems: [], customer: null),
-    Cart(keyCart: "4", cartItems: [], customer: null),
-    Cart(keyCart: "5", cartItems: [], customer: null),
-    Cart(keyCart: "6", cartItems: [], customer: null),
-    Cart(keyCart: "7", cartItems: [], customer: null),
-    Cart(keyCart: "8", cartItems: [], customer: null),
-    Cart(keyCart: "9", cartItems: [], customer: null),
+    Cart(keyCart: "1", cartItems: []),
+    Cart(keyCart: "2", cartItems: []),
+    Cart(keyCart: "3", cartItems: []),
+    Cart(keyCart: "4", cartItems: []),
+    Cart(keyCart: "5", cartItems: []),
+    Cart(keyCart: "6", cartItems: []),
+    Cart(keyCart: "7", cartItems: []),
+    Cart(keyCart: "8", cartItems: []),
+    Cart(keyCart: "9", cartItems: []),
   ].obs;
 
   var selectedCart = 0.obs;
@@ -47,10 +47,6 @@ class CartsController extends GetxController {
         .reduce((value, element) => value + element);
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
 
   Future changeCart(int index) async {
     selectedCart.value = index;
@@ -59,12 +55,12 @@ class CartsController extends GetxController {
 
   Future addProduct(Product product) async {
     bool thereIsProductInCart = false;
-    listCarts.value[selectedCart.value].cartItems.forEach((elementProduct) {
+    for (final elementProduct in listCarts.value[selectedCart.value].cartItems) {
       if (elementProduct.product.sku == product.sku) {
         elementProduct.quantity = elementProduct.quantity + 1;
         thereIsProductInCart = true;
       }
-    });
+    }
 
     if (!thereIsProductInCart) {
       listCarts.value[selectedCart.value].cartItems
@@ -78,12 +74,12 @@ class CartsController extends GetxController {
   }
 
   Future updateItem(CartItem product) async {
-    listCarts.value[selectedCart.value].cartItems.forEach((elementProduct) {
+    for (final elementProduct in listCarts.value[selectedCart.value].cartItems) {
       if (elementProduct.product.sku == product.product.sku) {
         elementProduct.quantity = product.quantity;
         elementProduct.sellingPrice = product.sellingPrice;
       }
-    });
+    }
     update();
   }
 

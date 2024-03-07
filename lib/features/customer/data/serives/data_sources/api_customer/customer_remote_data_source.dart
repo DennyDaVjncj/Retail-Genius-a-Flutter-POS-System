@@ -1,11 +1,11 @@
 import 'dart:convert';
 
+import 'package:http/http.dart' as http;
 import 'package:thepos/features/customer/data/models/Customers.dart';
 import 'package:thepos/features/customer/data/models/customer.dart';
-import 'package:http/http.dart' as http;
-import 'package:thepos/features/customer/data/serives/forbiden_operation.dart';
 import 'package:thepos/features/customer/data/serives/data_sources/api_customer/remote_store_cutomer_error.dart';
 import 'package:thepos/features/customer/data/serives/data_sources/remote_customer.dart';
+import 'package:thepos/features/customer/data/serives/forbiden_operation.dart';
 
 class CustomerRemoteDataSource extends RemoteCustomer {
 
@@ -61,7 +61,7 @@ class CustomerRemoteDataSource extends RemoteCustomer {
 
       final Map<String, String> headers =_buildHeader();
 
-      final  response = await _client.get(_url,
+      final  http.Response response = await _client.get(_url,
         headers: headers,
       );
 
